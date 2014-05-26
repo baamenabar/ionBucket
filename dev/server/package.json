@@ -1,0 +1,17 @@
+{
+  "name": "ionBucketServer",
+  "version": "0.1.0",
+  "description": "Un servidor REST para el app ionBucket",
+  "main": "server.js",
+  "scripts": {
+    "test": "testolserver"
+  },
+  "author": "B. Agustin Amenabar L.",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "morgan": "~1.1.1",
+    "restify": "~2.8.1",
+    "mongojs": "~0.13.0"
+  }
+}
