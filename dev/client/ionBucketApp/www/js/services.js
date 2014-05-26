@@ -86,5 +86,13 @@ angular.module('ionBucket.services', [])
 				}
 			});
 		},
+		deleteItem: function (id, email) {
+			return $http.delete(base+'/api/v1/ionBucket/data/item/' + id, {
+				method: 'DELETE',
+				params: {
+					token: email
+				}
+			});
+		},
 	};
 });
