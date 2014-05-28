@@ -8,12 +8,17 @@ angular.module('ionBucket', ['ionic', 'ionBucket.controllers', 'ionBucket.servic
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    /*
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
+    //*/
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+  });
+  
+  //*
   })
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -27,7 +32,16 @@ angular.module('ionBucket', ['ionic', 'ionBucket.controllers', 'ionBucket.servic
       views: {
         'auth-signin': {
           templateUrl: 'templates/auth-signin.html',
-          controller: 'SignInCtrl'
+          controller: 'signInCtrl'
+        }
+      }
+    })
+    .state('auth.signup',{
+      url: '/signup',
+      views: {
+        'auth-signup': {
+          templateUrl: 'templates/auth-signup.html',
+          controller: 'signUpCtrl'
         }
       }
     })
@@ -41,7 +55,7 @@ angular.module('ionBucket', ['ionic', 'ionBucket.controllers', 'ionBucket.servic
       views: {
         'bucket-list': {
           templateUrl: 'templates/bucket-list.html',
-          controller: 'MyListCtrl'
+          controller: 'myListCtrl'
         }
       }
     })
@@ -55,5 +69,5 @@ angular.module('ionBucket', ['ionic', 'ionBucket.controllers', 'ionBucket.servic
       }
     });
     $urlRouterProvider.otherwise('/auth/signin');
-  });
+//*/
 });

@@ -46,8 +46,13 @@ module.exports = function (server, db) {
 		console.log('in');
 		db.usuariosApp.findOne({email:user.email},
 			function(err, dbUser){
-				console.log('encontramos el email');
-				console.log('queremos comparar:'+user.password+' con: '+dbUser.password);
+				if(!dbUser){//si la base de datos no encuentra un registro, devolverá null
+					console.log('se buscó un email que no existe en la DB');
+					res.writeHead(403, contentTypeTipo);
+					res.end(JSON.stringify({
+						error: 'Credenciales inválidas. Usuario no encontrado.'
+					}));
+				}
 				pwdMngr.comparePasswords(user.password, dbUser.password, function (err, isMatch) {
 
 					if (isMatch) {

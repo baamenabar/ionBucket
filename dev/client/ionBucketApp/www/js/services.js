@@ -2,16 +2,19 @@ angular.module('ionBucket.services', [])
 .factory('API', function ($rootScope, $http, $ionicLoading, $window) {
 	var base = 'http://localhost:9804';
 
-	$rootScope.loading = $ionicLoading.show({
-		content : text ? text : 'Loading',
-		animation: 'fade-in',
-		showBackdrop:true,
-		maxWidth: 200,
-		showDelay: 0
-	});
+	$rootScope.show = function (text) {
+		console.log('$rootscope.show llamado en services.js');
+		$ionicLoading.show({
+			content : text ? text : 'Loading',
+			animation: 'fade-in',
+			showBackdrop:true,
+			maxWidth: 200,
+			showDelay: 0
+		});
+	};
 
 	$rootScope.hide = function() {
-		$rootScope.loading.hide();
+		$ionicLoading.hide();
 	};
 
 	$rootScope.logout = function () {
@@ -20,10 +23,11 @@ angular.module('ionBucket.services', [])
 	};
 
 	$rootScope.notify = function (text) {
+		console.log('llamado notify en services.js');
 		$rootScope.show(text);
-		$window.setTimout(function () {
+		$window.setTimeout(function () {
 			$rootScope.hide();
-		}, 1999);
+		}, 2299);
 	};
 
 	$rootScope.doRefresh = function (tab) {
@@ -49,7 +53,8 @@ angular.module('ionBucket.services', [])
 
 	return {
 		signin: function (form) {
-			return $http.post(base+'/api/v1/ionBucket/auth/login', form);
+			console.log('llamando a signin dentro de services.js');
+			return $http.post(base+'/api/v1/ionBucket/auth/login', form);// esto devolverá una promise que contiene 2 métodos successs y error
 		},
 		signup: function (form) {
 			return $http.post(base+'/api/v1/ionBucket/auth/register', form);
